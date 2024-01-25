@@ -1,0 +1,28 @@
+<div class="user-details">
+    <nav class="back-button">
+        <button type="button" class="btn btn-light" [routerLink]="'/users'">Back</button>
+    </nav>
+
+    <div class="row" *ngIf="user$ | async as user">
+        <div class="user-detail-image col-md-5">
+            <img mat-card-image src="https://fakeimg.pl/500x350/?text={{user.initials}}" alt="Profilfoto">
+        </div>
+        <div class="user-detail-info col-md-7">
+            <h3>Name: {{user.name}}</h3>
+            <h3>Surname: {{user.surname}}</h3>
+            <h3>Gender: {{user.gender}}</h3>
+        </div>
+        <br>
+        <h3 class="posts col-md-7">Posts</h3>
+        <div *ngIf="user.posts != 0; else infoText">
+            <div *ngIf="posts$ | async as posts">
+                <div *ngFor="let post of posts">
+                    <h3 class="posts-info">{{post.title}}</h3>
+                </div>
+            </div>
+        </div>
+        <ng-template #infoText>
+            <h3>The user {{user.id}} has no Posts!</h3>
+        </ng-template>
+    </div>
+</div>

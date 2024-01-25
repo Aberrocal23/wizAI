@@ -1,0 +1,31 @@
+<div class="row data-options">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <input #searchValue type="text" id="search" class="form-control" placeholder="Search by name..."/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2 search-name">
+        <button type="button" class="btn btn-light" (click)="searchBy(searchValue)">Search</button>
+    </div>
+
+    <div class="col-md-2 sort-name">
+        <button type="button" class="btn btn-light" (click)="sortByName()">Sort By Name</button>
+    </div>
+    <div class="col-md-2 sort-id">
+        <button type="button" class="btn btn-light" (click)="sortById()">Sort By Id</button>
+    </div>
+    <div class="col-md-2 refresh-button">
+        <button type="button" class="btn btn-light" (click)="loadData()">Refresh</button>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="userData$ | async as userData">
+        <div *ngFor="let user of userData" class="col-md-4 col-sm-6 col-12">
+            <app-user-card [user] = user></app-user-card>
+        </div>
+    </div>
+</div>
+
+
